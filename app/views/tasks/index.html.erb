@@ -1,0 +1,33 @@
+
+
+  <div class = "bg-white border bottom" >
+    <div class="container d-flex align-items-center justify-content-around py-2">
+      <h1> My tasks </h1>
+    </div>
+  </div>
+  <div class = "container d-flex align-items-center justify-content-around bg-light py-2">
+    <ul class = "index">
+      <% @tasks.each do |task| %>
+        <% if task.completed %>
+          <li>
+            ☑ <%= link_to task.title, task_path(task) %>
+            <%= link_to "🗑",
+            task_path(task),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+          </li>
+
+        <% else %>
+            <li>
+              ☐ <%= link_to task.title, task_path(task) %>
+              <%= link_to "🗑",
+              task_path(task),
+              method: :delete,
+              data: { confirm: "Are you sure?" } %>
+            </li>
+        <% end %>
+      <% end %>
+    </ul>
+
+    <%= link_to "Add a new Task", new_task_path %>
+  </div>
